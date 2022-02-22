@@ -1,5 +1,9 @@
 # Set Up
 
+- ## Apollo Codegen
+  - npm run apollo:codegen "for delete previous folder"
+  - run on terminal not script
+  - apollo client:codegen src/**generated** --target=typescript --outputFlat
 - ## Tailinwd
 
   - [Check Here for Detail](https://tailwindcss.com/docs/guides/create-react-app)
@@ -38,3 +42,22 @@
     - read and modify anywhere without graphql operation to do and stores in apollo
     - every single change the variables the active query will automatically refreshes
       - const isLoggedIn = useReactiveVar(isLoggedInVar); easyyy to get state
+
+- ## React Hook Form
+
+  - [Click Here For Detail](https://react-hook-form.com/ts)
+
+- ## React Router Dom
+
+  - [Click Here For Detail](https://reactrouter.com/docs/en/v6)
+
+- ## Login Page
+  - Tailwind Styling
+  - Use React Hook Form
+  - Calling mutation
+    - our mutation was not protected
+    - npm install -g apollo apollo
+    - Apollo Codegen will help types
+      - 1. Downgrade node version
+      - 2. Downgrade graphql version @15.5.1
+      - 3. run code on terminal not on script !
