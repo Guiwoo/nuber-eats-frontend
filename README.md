@@ -72,6 +72,21 @@
     - 2. Downgrade graphql version @15.5.1
     - 3. run code on terminal not on script !
 
+- after pass the user save the token on localstorage and apollo var
+
 - ## Create Page
+
   - ReactHelmetAsync for change the title on the top bar
   - Email regex [Check Here](https://emailregex.com/)
+  - after Create account sucess ? send user to login page
+    - with data
+
+- ## Token
+
+  - Not working why ? our requesting does not contain header !
+  - [Check Here](https://www.apollographql.com/docs/react/networking/authentication/)
+
+- ## Header
+  - Container "tailwind magic with w-full , max-w-screen-lg"
+  - If you wanna use data something don't need to drill down upder component
+    - Have a "Cache" system

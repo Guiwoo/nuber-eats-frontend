@@ -10,7 +10,6 @@ import {ButtonValidOrNot} from "../components/buttonValidOrNot";
 import {Link, useLocation} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import {authToken, isLoggedInVar} from "../apollo";
-import {Location} from "history";
 import {EmailPattern, LOCAL_STROAGE_TOKEN} from "../constant";
 
 interface ILoginForm {
