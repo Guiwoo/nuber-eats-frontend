@@ -1,5 +1,7 @@
 # Set Up
 
+- ## Style Mobile First Allllwayyyyyyss
+
 - ## Apollo Codegen
   - npm run apollo:codegen "for delete previous folder"
   - run on terminal not script
@@ -52,12 +54,19 @@
   - [Click Here For Detail](https://reactrouter.com/docs/en/v6)
 
 - ## Login Page
+
   - Tailwind Styling
-  - Use React Hook Form
-  - Calling mutation
-    - our mutation was not protected
-    - npm install -g apollo apollo
-    - Apollo Codegen will help types
-      - 1. Downgrade node version
-      - 2. Downgrade graphql version @15.5.1
-      - 3. run code on terminal not on script !
+    - Mobile Design First !!!!!!
+    - Can extend colors on tailwind.config.js !
+    - [Check Here](https://tailwindcss.com/docs/customizing-colors#adding-additional-colors)
+    - How to tacking formState ? for if filled in ? shows diffenrt color !
+    - thing
+
+- Use React Hook Form
+- Calling mutation
+  - our mutation was not protected
+  - npm install -g apollo apollo
+  - Apollo Codegen will help types
+    - 1. Downgrade node version
+    - 2. Downgrade graphql version @15.5.1
+    - 3. run code on terminal not on script !
