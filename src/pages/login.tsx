@@ -7,7 +7,11 @@ import {
 } from "../__generated__/loginMutation";
 import nuberLogo from "../images/logo.svg";
 import {ButtonValidOrNot} from "../components/buttonValidOrNot";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
+import {authToken, isLoggedInVar} from "../apollo";
+import {Location} from "history";
+import {EmailPattern, LOCAL_STROAGE_TOKEN} from "../constant";
 
 interface ILoginForm {
   email: string;
@@ -24,22 +28,36 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
+interface Itype {
+  state?: {
+    email?: string;
+    password?: string;
+  };
+}
+
 export const LoginPage = () => {
+  const location = useLocation() as Itype;
   const {
     register,
     getValues,
-    formState: {errors, isDirty, isValid},
+    formState: {errors, isValid},
     handleSubmit,
   } = useForm<ILoginForm>({
     mode: "onChange",
+    defaultValues: {
+      email: location.state?.email || "",
+      password: location.state?.password || "",
+    },
   });
   //this data i can handle !
   const onCompleted = (data: loginMutation) => {
     const {
       login: {ok, token},
     } = data;
-    if (ok) {
-      console.log(token);
+    if (ok && token) {
+      localStorage.setItem(LOCAL_STROAGE_TOKEN, token);
+      authToken(token);
+      isLoggedInVar(true);
     }
   };
   const [_loginMutation, {data: loginMutationResult, loading}] = useMutation<
@@ -64,6 +82,9 @@ export const LoginPage = () => {
   };
   return (
     <div className="h-screen flex items-center flex-col mt-10 lg:mt-28">
+      <Helmet>
+        <title>Login | Nuber Eats</title>
+      </Helmet>
       <div className="px-5 w-full max-w-screen-sm flex flex-col items-center">
         <img src={nuberLogo} className="w-52 mb-5" alt="" />
         <h4 className="font-medium text-left w-full text-2xl mb-10">
@@ -74,7 +95,13 @@ export const LoginPage = () => {
           className="grid gap-3 mt-5 w-full mb-5"
         >
           <input
-            {...register("email", {required: "Email is Required"})}
+            {...register("email", {
+              required: "Email is Required",
+              pattern: {
+                value: EmailPattern,
+                message: "Write a email form",
+              },
+            })}
             placeholder="Email"
             type="email"
             className="input"

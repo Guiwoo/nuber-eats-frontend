@@ -64,9 +64,14 @@
 
 - Use React Hook Form
 - Calling mutation
+
   - our mutation was not protected
   - npm install -g apollo apollo
   - Apollo Codegen will help types
     - 1. Downgrade node version
     - 2. Downgrade graphql version @15.5.1
     - 3. run code on terminal not on script !
+
+- ## Create Page
+  - ReactHelmetAsync for change the title on the top bar
+  - Email regex [Check Here](https://emailregex.com/)
