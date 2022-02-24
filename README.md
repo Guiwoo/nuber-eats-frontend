@@ -90,3 +90,14 @@
   - Container "tailwind magic with w-full , max-w-screen-lg"
   - If you wanna use data something don't need to drill down upder component
     - Have a "Cache" system
+
+# User Pages
+
+- Verifying Email
+  - [Get Query Awesome way](https://reactrouter.com/web/example/query-parameters)
+  - email to verifying email will send to 127.0.0.1 !== localchost
+    - need to fix it (when deploy)
+  - Handling Cache No need to refetch or get mutation
+    - [Check Here](https://www.apollographql.com/docs/react/caching/cache-interaction/)
+    - [Check Here](https://www.apollographql.com/docs/react/caching/cache-interaction/#writefragment)
+    - awesome and super fast

@@ -1,15 +1,17 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import {BrowserRouter as Router, Outlet, Route, Routes} from "react-router-dom";
 import {Restaurant} from "../pages/client/restaurant";
 import {Header} from "../components/header";
 import {useMe} from "../hooks/useMe";
+import {NotFound} from "../pages/404";
+import {ConfirmEmail} from "../pages/user/confirm-email";
 
 const ClientRotues = () => {
-  return <Restaurant />;
+  return (
+    <>
+      <Restaurant />
+      <Outlet />
+    </>
+  );
 };
 
 export const LoggedInRouter = () => {
@@ -27,9 +29,12 @@ export const LoggedInRouter = () => {
       <Header />
       <Routes>
         {data.me.role === "Client" && (
-          <Route path="/" element={<ClientRotues />} />
+          <Route path="/">
+            <Route index element={<Restaurant />} />
+            <Route path="confirm" element={<ConfirmEmail />} />
+          </Route>
         )}
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
