@@ -93,7 +93,8 @@
 
 # User Pages
 
-- Verifying Email
+- ## Verifying Email
+
   - [Get Query Awesome way](https://reactrouter.com/web/example/query-parameters)
   - email to verifying email will send to 127.0.0.1 !== localchost
     - need to fix it (when deploy)
@@ -101,3 +102,9 @@
     - [Check Here](https://www.apollographql.com/docs/react/caching/cache-interaction/)
     - [Check Here](https://www.apollographql.com/docs/react/caching/cache-interaction/#writefragment)
     - awesome and super fast
+
+- ## Edit Profile
+  - same as verifying email
+  - Chache or Refeching
+    - Those work same way (diffency is Speed !)
+    - [Refech check here](https://www.apollographql.com/docs/react/data/queries/#refetching)

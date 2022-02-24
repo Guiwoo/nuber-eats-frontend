@@ -4,6 +4,7 @@ import {Header} from "../components/header";
 import {useMe} from "../hooks/useMe";
 import {NotFound} from "../pages/404";
 import {ConfirmEmail} from "../pages/user/confirm-email";
+import {EditProfile} from "../pages/user/edit-profile";
 
 const ClientRotues = () => {
   return (
@@ -32,6 +33,7 @@ export const LoggedInRouter = () => {
           <Route path="/">
             <Route index element={<Restaurant />} />
             <Route path="confirm" element={<ConfirmEmail />} />
+            <Route path="edit-profile" element={<EditProfile />} />
           </Route>
         )}
         <Route path="*" element={<NotFound />} />

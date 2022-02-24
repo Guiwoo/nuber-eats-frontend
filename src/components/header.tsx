@@ -17,7 +17,7 @@ export const Header = () => {
         <div className="w-full px-5 xl:px-0 max-w-screen-lg mx-auto flex justify-between">
           <img src={nuberLogo} className="w-24" alt="" />
           <span className="text-xs">
-            <Link to="/my-profile">
+            <Link to="/edit-profile">
               <FontAwesomeIcon icon={faUser} className="text-lg" />
             </Link>
           </span>
