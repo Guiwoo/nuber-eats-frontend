@@ -15,7 +15,9 @@ export const Header = () => {
       )}
       <header className="py-4">
         <div className="w-full px-5 xl:px-0 max-w-screen-lg mx-auto flex justify-between">
-          <img src={nuberLogo} className="w-24" alt="" />
+          <Link to="/">
+            <img src={nuberLogo} className="w-24" alt="" />
+          </Link>
           <span className="text-xs">
             <Link to="/edit-profile">
               <FontAwesomeIcon icon={faUser} className="text-lg" />

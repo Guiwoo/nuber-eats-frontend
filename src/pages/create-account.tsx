@@ -4,13 +4,13 @@ import {FormError} from "../components/form-error";
 import nuberLogo from "../images/logo.svg";
 import {ButtonValidOrNot} from "../components/buttonValidOrNot";
 import {Link, useNavigate} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
 import {UserRole} from "../__generated__/globalTypes";
 import {
   createAccountMutation,
   createAccountMutationVariables,
 } from "../__generated__/createAccountMutation";
 import {EmailPattern} from "../constant";
+import {HelmetLayout} from "../components/HelmetLayout";
 
 interface IAccForm {
   email: string;
@@ -71,9 +71,7 @@ export const CreateAccountPage = () => {
   };
   return (
     <div className="h-screen flex items-center flex-col mt-10 lg:mt-28">
-      <Helmet>
-        <title>Create Account | Nuber Eats</title>
-      </Helmet>
+      <HelmetLayout title="Create Account" />
       <div className="px-5 w-full max-w-screen-sm flex flex-col items-center">
         <img src={nuberLogo} className="w-52 mb-5" alt="" />
         <h4 className="font-medium text-left w-full text-2xl mb-10">

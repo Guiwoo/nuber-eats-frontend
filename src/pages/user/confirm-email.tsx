@@ -1,6 +1,7 @@
 import {gql, useApolloClient, useMutation} from "@apollo/client";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {HelmetLayout} from "../../components/HelmetLayout";
 import {useMe} from "../../hooks/useMe";
 import {useQueryParams} from "../../hooks/useQueryParams";
 import {
@@ -59,6 +60,7 @@ export const ConfirmEmail = () => {
   }, []);
   return (
     <div className="mt-52 flex flex-col items-center justify-center">
+      <HelmetLayout title="Confirm Email" />
       <h2 className="text-lg mb-1 font-medium">Confirming Email...</h2>
       <h4 className=" text-gray-500 text-sm">
         Please wait,do not close this page..

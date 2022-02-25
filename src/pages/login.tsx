@@ -8,9 +8,9 @@ import {
 import nuberLogo from "../images/logo.svg";
 import {ButtonValidOrNot} from "../components/buttonValidOrNot";
 import {Link, useLocation} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
 import {authToken, isLoggedInVar} from "../apollo";
 import {EmailPattern, LOCAL_STROAGE_TOKEN} from "../constant";
+import {HelmetLayout} from "../components/HelmetLayout";
 
 interface ILoginForm {
   email: string;
@@ -81,9 +81,7 @@ export const LoginPage = () => {
   };
   return (
     <div className="h-screen flex items-center flex-col mt-10 lg:mt-28">
-      <Helmet>
-        <title>Login | Nuber Eats</title>
-      </Helmet>
+      <HelmetLayout title="Log-in" />
       <div className="px-5 w-full max-w-screen-sm flex flex-col items-center">
         <img src={nuberLogo} className="w-52 mb-5" alt="" />
         <h4 className="font-medium text-left w-full text-2xl mb-10">
