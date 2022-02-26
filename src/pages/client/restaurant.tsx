@@ -11,6 +11,7 @@ import {createSearchParams, Link, useNavigate} from "react-router-dom";
 import {HelmetLayout} from "../../components/HelmetLayout";
 import {CATEGORY_FRAMENT, RESTAURANT_FRAGMENT} from "../../fragment";
 import {CategoryList} from "../../components/categoryList";
+import {Pagination} from "../../components/pagination";
 
 const RESTAURANT_QUERY = gql`
   query restaurantsPageQuery($input: RestaurantsInput!) {
@@ -103,29 +104,7 @@ export const Restaurant = () => {
               />
             ))}
           </div>
-          <div className="grid grid-cols-3 text-center max-w-md mx-auto">
-            {page > 1 ? (
-              <button
-                onClick={onPrevPageClick}
-                className="focus:outline-none font-medium text-xl"
-              >
-                &larr;
-              </button>
-            ) : (
-              <div></div>
-            )}
-            <span className="mx-5">
-              Page{page} of {data?.restaurants.totalPages}
-            </span>
-            {page !== data?.restaurants.totalPages && (
-              <button
-                onClick={onNextPageClick}
-                className="focus:outline-none font-medium text-xl"
-              >
-                &rarr;
-              </button>
-            )}
-          </div>
+          <Pagination totalPages={data?.restaurants.totalPages} />
         </div>
       )}
     </div>

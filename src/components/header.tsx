@@ -13,7 +13,7 @@ export const Header = () => {
           <span>Please Verify your email</span>
         </div>
       )}
-      <header className="py-4">
+      <header className="py-4 fixed bg-white w-full">
         <div className="w-full px-5 xl:px-0 max-w-screen-lg mx-auto flex justify-between">
           <Link to="/">
             <img src={nuberLogo} className="w-24" alt="" />
@@ -25,6 +25,7 @@ export const Header = () => {
           </span>
         </div>
       </header>
+      <div className="py-6"></div>
     </>
   );
 };
