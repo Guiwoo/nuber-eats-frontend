@@ -7,9 +7,10 @@ import {
 import Nuber from "../../images/topBar.png";
 import {RestaurantList} from "../../components/restaurantList";
 import {useForm} from "react-hook-form";
-import {createSearchParams, useNavigate} from "react-router-dom";
+import {createSearchParams, Link, useNavigate} from "react-router-dom";
 import {HelmetLayout} from "../../components/HelmetLayout";
-import {RESTAURANT_FRAGMENT} from "../../fragment";
+import {CATEGORY_FRAMENT, RESTAURANT_FRAGMENT} from "../../fragment";
+import {CategoryList} from "../../components/categoryList";
 
 const RESTAURANT_QUERY = gql`
   query restaurantsPageQuery($input: RestaurantsInput!) {
@@ -17,11 +18,7 @@ const RESTAURANT_QUERY = gql`
       ok
       error
       categories {
-        id
-        name
-        coverImage
-        slug
-        restaurantCount
+        ...CategoryParts
       }
     }
     restaurants(input: $input) {
@@ -34,6 +31,7 @@ const RESTAURANT_QUERY = gql`
       }
     }
   }
+  ${CATEGORY_FRAMENT}
   ${RESTAURANT_FRAGMENT}
 `;
 
@@ -85,15 +83,13 @@ export const Restaurant = () => {
         <div className=" max-w-screen-lg mx-auto mt-8 px-5">
           <div className="flex justify-around max-w-screen-sm mx-auto">
             {data?.allCategories.categories?.map((c, index) => (
-              <div key={index} className="group flex flex-col items-center">
-                <div
-                  className="group-hover:border-red-300 border w-16 h-16 bg-cover bg-center rounded-full"
-                  style={{backgroundImage: `url(${c.coverImage})`}}
-                ></div>
-                <span className="group capitalize mt-3 text-sm text-center font-medium">
-                  {c.name}
-                </span>
-              </div>
+              <Link key={index} to={`/category/${c.slug}`}>
+                <CategoryList
+                  coverImage={c.coverImage || ""}
+                  name={c.name}
+                  id={c.id + ""}
+                />
+              </Link>
             ))}
           </div>
           <div className="grid md:grid-cols-3 gap-x-5 gap-y-10 mt-8 pb-20">

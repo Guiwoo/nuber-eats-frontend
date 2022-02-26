@@ -10,7 +10,17 @@ export const RESTAURANT_FRAGMENT = gql`
           name
           coverImage
         }
-        address
+        address 
         isPromted
     }
+`
+
+export const CATEGORY_FRAMENT = gql`
+  fragment CategoryParts on Category {
+    id
+        name
+        coverImage
+        slug
+        restaurantCount
+  }
 `

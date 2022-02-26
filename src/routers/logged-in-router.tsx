@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Outlet, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {Restaurant} from "../pages/client/restaurant";
 import {Header} from "../components/header";
 import {useMe} from "../hooks/useMe";
@@ -6,15 +6,7 @@ import {NotFound} from "../pages/404";
 import {ConfirmEmail} from "../pages/user/confirm-email";
 import {EditProfile} from "../pages/user/edit-profile";
 import {SearchPage} from "../pages/client/search";
-
-const ClientRotues = () => {
-  return (
-    <>
-      <Restaurant />
-      <Outlet />
-    </>
-  );
-};
+import {Category} from "../pages/client/category";
 
 export const LoggedInRouter = () => {
   const {data, loading, error} = useMe();
@@ -36,6 +28,7 @@ export const LoggedInRouter = () => {
             <Route path="confirm" element={<ConfirmEmail />} />
             <Route path="edit-profile" element={<EditProfile />} />
             <Route path="search" element={<SearchPage />} />
+            <Route path="category/:slug" element={<Category />} />
           </Route>
         )}
         <Route path="*" element={<NotFound />} />
