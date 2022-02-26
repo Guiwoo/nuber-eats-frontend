@@ -5,6 +5,7 @@ import {useMe} from "../hooks/useMe";
 import {NotFound} from "../pages/404";
 import {ConfirmEmail} from "../pages/user/confirm-email";
 import {EditProfile} from "../pages/user/edit-profile";
+import {SearchPage} from "../pages/client/search";
 
 const ClientRotues = () => {
   return (
@@ -34,6 +35,7 @@ export const LoggedInRouter = () => {
             <Route index element={<Restaurant />} />
             <Route path="confirm" element={<ConfirmEmail />} />
             <Route path="edit-profile" element={<EditProfile />} />
+            <Route path="search" element={<SearchPage />} />
           </Route>
         )}
         <Route path="*" element={<NotFound />} />

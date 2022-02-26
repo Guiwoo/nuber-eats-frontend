@@ -111,4 +111,5 @@
 
 # Restaurant
 
--
+- Search
+  - Lazy Query for not running immidetley
