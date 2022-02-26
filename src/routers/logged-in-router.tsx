@@ -7,6 +7,7 @@ import {ConfirmEmail} from "../pages/user/confirm-email";
 import {EditProfile} from "../pages/user/edit-profile";
 import {SearchPage} from "../pages/client/search";
 import {Category} from "../pages/client/category";
+import {RestaurantDetail} from "../pages/client/restaurantDetail";
 
 export const LoggedInRouter = () => {
   const {data, loading, error} = useMe();
@@ -29,6 +30,7 @@ export const LoggedInRouter = () => {
             <Route path="edit-profile" element={<EditProfile />} />
             <Route path="search" element={<SearchPage />} />
             <Route path="category/:slug" element={<Category />} />
+            <Route path="restaurants/:id" element={<RestaurantDetail />} />
           </Route>
         )}
         <Route path="*" element={<NotFound />} />
