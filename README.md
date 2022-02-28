@@ -130,43 +130,58 @@
 
   - "test:cov" : "npm test -- --coverage --watchAll=false"
 
-- ### App Testing
+- ## Component Testing
 
-  - mocking each Components
-  - testing by screen.getText "expected user output"
+  - ### App Testing
 
-- ### Btn Testing
+    - mocking each Components
+    - testing by screen.getText "expected user output"
 
-  - Not care about ternary opertation
-  - expected with to have Class "" testing !!
+  - ### Btn Testing
 
-- ### RestaurantList
+    - Not care about ternary opertation
+    - expected with to have Class "" testing !!
 
-  - props just make a object for props and use seperate operations
-  - screen.getByRole("things)
+  - ### RestaurantList
 
-- ### Header
-  - getByText, queryByText return different, fail and null
-  - mocking Query me
-    - Using MockedProvider apollo offering
-    -
-    ```
-    mocks={[
-      {
-      request: {
-      query: ME_QUERY,
-      },
-      result: {
-      data: {
-      me: {
-      id: 1,
-      email: "",
-      role: "",
-      verified: true,
-      },
-      },
-      },
-      },
-      ]}
-    ```
-    - can give a mock value exactly same on query
+    - props just make a object for props and use seperate operations
+    - screen.getByRole("things)
+
+  - ### Header
+
+    - getByText, queryByText return different, fail and null
+    - mocking Query me
+      - Using MockedProvider apollo offering
+      -
+      ```
+      mocks={[
+        {
+        request: {
+        query: ME_QUERY,
+        },
+        result: {
+        data: {
+        me: {
+        id: 1,
+        email: "",
+        role: "",
+        verified: true,
+        },
+        },
+        },
+        },
+        ]}
+      ```
+      - can give a mock value exactly same on query
+
+  - ### Pagination
+
+    - Mocking state like this
+    - const my = 2;
+    - const setPage = jest.fn();
+    - React.useState = jest.fn().mockReturnValue([my, setPage]);
+
+  - ### CategoryList
+    - Nothing special use varialbes and get text the test name
+
+- ## Page Testing
