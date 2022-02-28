@@ -127,4 +127,19 @@
   }
 
 - Check the script to coverage
+
   - "test:cov" : "npm test -- --coverage --watchAll=false"
+
+- ### App Testing
+
+  - mocking each Components
+  - testing by screen.getText "expected user output"
+
+- ### Btn Testing
+
+  - Not care about ternary opertation
+  - expected with to have Class "" testing !!
+
+- ### RestaurantList
+  - props just make a object for props and use seperate operations
+  - screen.getByRole("things)

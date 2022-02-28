@@ -5,13 +5,13 @@ import {
   restaurantsPageQueryVariables,
 } from "../../__generated__/restaurantsPageQuery";
 import Nuber from "../../images/topBar.png";
-import {RestaurantList} from "../../components/restaurantList";
 import {useForm} from "react-hook-form";
-import {createSearchParams, Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {HelmetLayout} from "../../components/HelmetLayout";
 import {CATEGORY_FRAMENT, RESTAURANT_FRAGMENT} from "../../fragment";
 import {CategoryList} from "../../components/categoryList";
 import {Pagination} from "../../components/pagination";
+import {RestaurantList} from "../../components/restaurantList";
 
 const RESTAURANT_QUERY = gql`
   query restaurantsPageQuery($input: RestaurantsInput!) {
@@ -55,8 +55,6 @@ export const Restaurant = () => {
     },
   });
   //page
-  const onNextPageClick = () => setPage(page + 1);
-  const onPrevPageClick = () => setPage(page - 1);
   //Submit get Search
   const onSearchSubmit = () => {
     const searchTerms = getValues().searchTerms;
