@@ -113,3 +113,17 @@
 
 - Search
   - Lazy Query for not running immidetley
+
+# Testing
+
+- setting the jest
+- "jest":{
+  "collectCoverageFrom": [
+  "./src/components/**/*.tsx",
+  "./src/pages/**/*.tsx",
+  "./src/routers/**/*.tsx"
+  ]
+  }
+
+- Check the script to coverage
+  - "test:cov" : "npm test -- --coverage --watchAll=false"
