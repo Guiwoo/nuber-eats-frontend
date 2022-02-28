@@ -25,7 +25,6 @@ describe("<App />", () => {
     await waitFor(() => {
       isLoggedInVar(true);
     });
-    debug();
     screen.getByText("Logged in");
   });
 });

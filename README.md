@@ -116,6 +116,7 @@
 
 # Testing
 
+- Focusing the output not a implemetation
 - setting the jest
 - "jest":{
   "collectCoverageFrom": [
