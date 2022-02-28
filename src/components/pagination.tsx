@@ -1,11 +1,11 @@
-import {useState} from "react";
+import React from "react";
 
 interface PaginationProps {
   totalPages: number | null | undefined;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({totalPages}) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = React.useState(1);
   const onNextPageClick = () => setPage(page + 1);
   const onPrevPageClick = () => setPage(page - 1);
   return (

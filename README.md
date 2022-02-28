@@ -141,5 +141,32 @@
   - expected with to have Class "" testing !!
 
 - ### RestaurantList
+
   - props just make a object for props and use seperate operations
   - screen.getByRole("things)
+
+- ### Header
+  - getByText, queryByText return different, fail and null
+  - mocking Query me
+    - Using MockedProvider apollo offering
+    -
+    ```
+    mocks={[
+      {
+      request: {
+      query: ME_QUERY,
+      },
+      result: {
+      data: {
+      me: {
+      id: 1,
+      email: "",
+      role: "",
+      verified: true,
+      },
+      },
+      },
+      },
+      ]}
+    ```
+    - can give a mock value exactly same on query
