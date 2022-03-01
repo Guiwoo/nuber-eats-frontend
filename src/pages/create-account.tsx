@@ -18,7 +18,7 @@ interface IAccForm {
   role: UserRole;
 }
 
-const Create_ACCOUNT_MUTATION = gql`
+export const Create_ACCOUNT_MUTATION = gql`
   mutation createAccountMutation($createAccInput: CreateAccInput!) {
     createAccount(input: $createAccInput) {
       ok
@@ -46,6 +46,7 @@ export const CreateAccountPage = () => {
       createAccount: {ok},
     } = data;
     if (ok) {
+      alert("Account Created");
       navigate("/", {replace: true, state: {email, password}});
     }
   };
@@ -86,7 +87,7 @@ export const CreateAccountPage = () => {
               required: "Email is Required",
               pattern: {
                 value: EmailPattern,
-                message: "Write a email form",
+                message: "Write a right email form",
               },
             })}
             placeholder="Email"

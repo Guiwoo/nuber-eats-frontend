@@ -185,5 +185,16 @@
     - Nothing special use varialbes and get text the test name
 
 - ## Page Testing
-  - Need to testing variables of mutations but apollo mockprovider can't test like that, It's not giving enough detail contorll for unit testing
-  - Use [Mock Apollo Client](https://github.com/mike-gibson/mock-apollo-client)
+
+  - ### Login
+
+    - Need to testing variables of mutations but apollo mockprovider can't test like that, It's not giving enough detail contorll for unit testing
+    - Use [Mock Apollo Client](https://github.com/mike-gibson/mock-apollo-client)
+    - Login input "userEvent type, clear click ,etc.. make real events"
+    - Don't forget it's not going to db
+
+  - ### Create
+    - Test Utils [Check here](https://testing-library.com/docs/react-native-testing-library/setup/#custom-render)
+    - Jest.requireActual(moudlename) "return real modues" [Clickhttps://jestjs.io/docs/jest-object#jestrequireactualmodulename)
+    - jest.clearAllMocks() all mocks with calls, instans delete all attributes
+      [Check Here](https://jestjs.io/docs/jest-object#jestclearallmocks)
