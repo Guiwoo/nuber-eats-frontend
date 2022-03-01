@@ -96,7 +96,7 @@ export const LoginPage = () => {
               required: "Email is Required",
               pattern: {
                 value: EmailPattern,
-                message: "Write a email form",
+                message: "Please Write a right email form",
               },
             })}
             placeholder="Email"

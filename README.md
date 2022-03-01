@@ -185,3 +185,5 @@
     - Nothing special use varialbes and get text the test name
 
 - ## Page Testing
+  - Need to testing variables of mutations but apollo mockprovider can't test like that, It's not giving enough detail contorll for unit testing
+  - Use [Mock Apollo Client](https://github.com/mike-gibson/mock-apollo-client)
