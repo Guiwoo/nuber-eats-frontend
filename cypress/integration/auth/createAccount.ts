@@ -35,6 +35,6 @@ describe("Create Account", () => {
         user.wait(3000)
         user.title().should("eq", "Log-in | Nuber Eats")
         user.findByRole("button").click()
-        user.window().its("localStorage.nuber-token").should("be.a", "string")
+        user.assertLoggedIn()
     })
 })

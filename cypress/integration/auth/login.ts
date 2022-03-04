@@ -14,10 +14,6 @@ describe("Log In", () => {
         user.findByRole("alert").should("have.text", "Password is Required")
     })
     it("can fill out the form and log in", () => {
-        user.visit("/")
-        user.findByPlaceholderText(/email/i).type("park.guiwoo@hotmail.com")
-        user.findByPlaceholderText(/password/i).type("123")
-        user.findByRole("button").should("not.have.class", "pointer-events-none").click()
-        user.window().its("localStorage.nuber-token").should("be.a", "string")
+        user.login("park.guiwoo@hotmail.com", "123")
     })
 })

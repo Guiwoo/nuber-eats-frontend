@@ -220,8 +220,13 @@
     - [Command Cypress Check Here](https://docs.cypress.io/api/commands/its)
     - cy.wait("Can user wait time")[Command Check here](https://docs.cypress.io/api/commands/wait)
     - ### Intercept
+
       - Spy or Mock the request and response [Site](https://docs.cypress.io/api/commands/intercept)
       - Ending the response with res.send()
-        - Response steps immidetely finished, and can't call anyother response handler
+        - Response steps immediately finished, and can't call anyother response handler
       - [Dynamically Stubbing a response](https://docs.cypress.io/api/commands/intercept#Dynamically-stubbing-a-response)
       - [Controlling the response](https://docs.cypress.io/api/commands/intercept#Controlling-the-response)
+
+      - ### Create On Command
+        - [Command Docs](https://docs.cypress.io/api/cypress-api/custom-commands)
+        - Cypress Can make a command or override command
