@@ -12,11 +12,28 @@ describe("Create Account", () => {
         user.findByRole("alert").should("have.text", "Password is Required")
     })
     it("should be able to account and log in", () => {
+        user.intercept("http://localhost:4000/graphql", (req) => {
+            const { operationName } = req.body
+            if (operationName && operationName === "createAccountMutation") {
+                req.reply((res) => {
+                    res.send({
+                        data: {
+                            "createAccount": {
+                                "ok": true,
+                                "error": null,
+                                "__typename": "CreateAccOutput"
+                            }
+                        }
+                    })
+                })
+            }
+        })
         user.visit("/create-account")
         user.findByPlaceholderText(/email/i).type("cypress@test.com")
         user.findByPlaceholderText(/password/i).type("123")
         user.findByRole("button").click()
         user.wait(3000)
+        user.title().should("eq", "Log-in | Nuber Eats")
         user.findByRole("button").click()
         user.window().its("localStorage.nuber-token").should("be.a", "string")
     })
