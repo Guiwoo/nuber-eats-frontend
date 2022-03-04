@@ -13,7 +13,7 @@ describe("Log In", () => {
         user.findByPlaceholderText(/password/i).type("aaa").clear()
         user.findByRole("alert").should("have.text", "Password is Required")
     })
-    it("can fill out the form", () => {
+    it("can fill out the form and log in", () => {
         user.visit("/")
         user.findByPlaceholderText(/email/i).type("park.guiwoo@hotmail.com")
         user.findByPlaceholderText(/password/i).type("123")

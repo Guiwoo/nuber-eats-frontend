@@ -218,3 +218,4 @@
     - window() get a object from active webpage
     - its() The objects porperties from have got before
     - [Command Cypress Check Here](https://docs.cypress.io/api/commands/its)
+    - cy.wait("Can user wait time")[Command Check here](https://docs.cypress.io/api/commands/wait)
