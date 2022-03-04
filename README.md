@@ -211,6 +211,10 @@
       - Can cofigure setting on sypress.json
 
     - Download cypress testing libaray
+
       - For helping get a elements
       - When you using testing library for getting elements , need to break down chain a bit
-    -
+
+    - window() get a object from active webpage
+    - its() The objects porperties from have got before
+    - [Command Cypress Check Here](https://docs.cypress.io/api/commands/its)
