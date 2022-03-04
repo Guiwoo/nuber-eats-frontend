@@ -198,3 +198,19 @@
     - Jest.requireActual(moudlename) "return real modues" [Clickhttps://jestjs.io/docs/jest-object#jestrequireactualmodulename)
     - jest.clearAllMocks() all mocks with calls, instans delete all attributes
       [Check Here](https://jestjs.io/docs/jest-object#jestclearallmocks)
+
+- ## E2E Testing
+
+  - ### Cpypress
+
+    - Can E2E test on mac windows Linux
+
+    - Download Cypress
+
+      - need to configure ts in cypress
+      - Can cofigure setting on sypress.json
+
+    - Download cypress testing libaray
+      - For helping get a elements
+      - When you using testing library for getting elements , need to break down chain a bit
+    -
