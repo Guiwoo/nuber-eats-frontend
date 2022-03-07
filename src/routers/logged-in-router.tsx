@@ -8,7 +8,8 @@ import {EditProfile} from "../pages/user/edit-profile";
 import {SearchPage} from "../pages/client/search";
 import {Category} from "../pages/client/category";
 import {RestaurantDetail} from "../pages/client/restaurantDetail";
-import {MyRestaruant} from "../pages/owner/myRestaurant";
+import {MyRestaruants} from "../pages/owner/myRestaurants";
+import {MyRestaurant} from "../pages/owner/myRestaurant";
 import {AddRestaurant} from "../pages/owner/addRestaurant";
 
 export const LoggedInRouter = () => {
@@ -38,8 +39,9 @@ export const LoggedInRouter = () => {
           )}
           {data.me.role === "Owner" && (
             <>
-              <Route index element={<MyRestaruant />} />
-              <Route path="/add-restaurant" element={<AddRestaurant />} />
+              <Route index element={<MyRestaruants />} />
+              <Route path="add-restaurant" element={<AddRestaurant />} />
+              <Route path="restaurants/:id" element={<MyRestaurant />} />
             </>
           )}
         </Route>
