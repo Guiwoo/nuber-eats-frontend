@@ -24,6 +24,13 @@ export interface CreateAccInput {
   role: UserRole;
 }
 
+export interface CreateRestaurantInput {
+  name: string;
+  coverImage: string;
+  address: string;
+  categoryName: string;
+}
+
 export interface EditProfileInput {
   email?: string | null;
   password?: string | null;

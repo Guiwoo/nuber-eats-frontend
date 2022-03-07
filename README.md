@@ -1,3 +1,8 @@
+# What need to do more
+
+- [] Search Page
+- [] UnitTesting the Pages
+
 # Set Up
 
 - ## Style Mobile First Allllwayyyyyyss
@@ -233,6 +238,18 @@
         - Cypress Can make a command or override command
 
       - ### Before Each
+
         - beforeEach()
         - use this hook it will fire before each testing super useful
           - [Docs](https://docs.cypress.io/guides/core-concepts/variables-and-aliases#Aliases-are-reset-before-each-test)
+
+      - ### Aliasing individual requests
+        - [Docs](https://docs.cypress.io/api/commands/intercept#Aliasing-individual-requests)
+        - Intercepting a response
+          - [Docs](https://docs.cypress.io/api/commands/intercept#Intercepting-a-response)
+        - Fixture (the data which is preset data)
+          - [Docs](https://docs.cypress.io/api/commands/intercept#Stubbing-a-response)
+        - Using fixture to send by res.send()
+          - [Docs](https://docs.cypress.io/api/commands/intercept#Ending-the-response-with-res-send)
+
+# Owner Dash Board

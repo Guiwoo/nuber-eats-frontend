@@ -8,6 +8,8 @@ import {EditProfile} from "../pages/user/edit-profile";
 import {SearchPage} from "../pages/client/search";
 import {Category} from "../pages/client/category";
 import {RestaurantDetail} from "../pages/client/restaurantDetail";
+import {MyRestaruant} from "../pages/owner/myRestaurant";
+import {AddRestaurant} from "../pages/owner/addRestaurant";
 
 export const LoggedInRouter = () => {
   const {data, loading, error} = useMe();
@@ -23,16 +25,24 @@ export const LoggedInRouter = () => {
     <Router>
       <Header />
       <Routes>
-        {data.me.role === "Client" && (
-          <Route path="/">
-            <Route index element={<Restaurant />} />
-            <Route path="confirm" element={<ConfirmEmail />} />
-            <Route path="edit-profile" element={<EditProfile />} />
-            <Route path="search" element={<SearchPage />} />
-            <Route path="category/:slug" element={<Category />} />
-            <Route path="restaurants/:id" element={<RestaurantDetail />} />
-          </Route>
-        )}
+        <Route path="/">
+          <Route path="confirm" element={<ConfirmEmail />} />
+          <Route path="edit-profile" element={<EditProfile />} />
+          {data.me.role === "Client" && (
+            <>
+              <Route index element={<Restaurant />} />
+              <Route path="search" element={<SearchPage />} />
+              <Route path="category/:slug" element={<Category />} />
+              <Route path="restaurants/:id" element={<RestaurantDetail />} />
+            </>
+          )}
+          {data.me.role === "Owner" && (
+            <>
+              <Route index element={<MyRestaruant />} />
+              <Route path="/add-restaurant" element={<AddRestaurant />} />
+            </>
+          )}
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
