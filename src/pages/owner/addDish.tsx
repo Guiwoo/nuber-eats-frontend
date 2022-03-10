@@ -6,6 +6,7 @@ import {HelmetLayout} from "../../components/HelmetLayout";
 import {createDish, createDishVariables} from "../../__generated__/createDish";
 import Nuber from "../../images/topBar.png";
 import {MY_RESTAURANT_QUERY} from "./myRestaurant";
+import {useState} from "react";
 
 interface IParams {
   id: string;
@@ -15,6 +16,7 @@ interface IForms {
   name: string;
   price: string;
   description: string;
+  [key: string]: string;
 }
 
 const CREATE_DISH_MUTATION = gql`
@@ -33,6 +35,7 @@ export const AddDish = () => {
     handleSubmit,
     formState: {isValid},
     getValues,
+    setValue,
   } = useForm<IForms>({
     mode: "onChange",
   });
@@ -54,7 +57,11 @@ export const AddDish = () => {
   const navigate = useNavigate();
 
   const onSubmit = () => {
-    const {name, price, description} = getValues();
+    const {name, price, description, ...rest} = getValues();
+    const optObj = optionsNumber.map((theId) => ({
+      name: rest[`${theId}-Opt-Name`],
+      extra: +rest[`${theId}-Opt-Extra`],
+    }));
     _createDishMutation({
       variables: {
         input: {
@@ -62,10 +69,20 @@ export const AddDish = () => {
           price: +price,
           description,
           restaurantId: +restaurantId,
+          options: optObj,
         },
       },
     });
     navigate(-1);
+  };
+  const [optionsNumber, setOptionsNumber] = useState<number[]>([]);
+  const clickHandler = () => {
+    setOptionsNumber((cur) => [Date.now(), ...cur]);
+  };
+  const onDeleteClick = (idToDelete: number) => {
+    setOptionsNumber((cur) => cur.filter((id) => id !== idToDelete));
+    setValue(`${idToDelete}-Opt-Name`, "");
+    setValue(`${idToDelete}-Opt-Extra`, "");
   };
   return (
     <>
@@ -104,14 +121,48 @@ export const AddDish = () => {
                 required: "Description is required.",
               })}
             />
+            <div>
+              <h4 className="font-medium mb-3 text-lg text-white">
+                Dish Options
+              </h4>
+              <span
+                onClick={clickHandler}
+                className="cursor-pointer text-white bg-gray-900 py-1 px-2 mt-5"
+              >
+                Add Dish Option
+              </span>
+              {optionsNumber.length !== 0 &&
+                optionsNumber.map((id) => {
+                  return (
+                    <div key={id} className="mt-5">
+                      <input
+                        {...register(`${id}-Opt-Name`)}
+                        type="text"
+                        placeholder="Option Name"
+                        className="py-2 px-4 focus:outline-none focus:border-gray-600 border-2 mr-3"
+                      />
+                      <input
+                        {...register(`${id}-Opt-Extra`)}
+                        type="number"
+                        min={0}
+                        placeholder="Option Extra Price"
+                        className="py-2 px-4 focus:outline-none focus:border-gray-600 border-2"
+                      />
+                      <span
+                        className="cursor-pointer text-white bg-red-500 py-3 px-2 ml-3"
+                        onClick={() => onDeleteClick(id)}
+                      >
+                        Delete Option
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
             <ButtonValidOrNot
               canClick={isValid}
               actionText={"Create Dish"}
               loading={loading}
             />
-            {/* {data?.createRestaurant?.error && (
-              <FormError errorMessage={data?.createRestaurant?.error} />
-            )} */}
           </form>
         </div>
       </div>

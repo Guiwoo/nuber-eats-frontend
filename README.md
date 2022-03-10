@@ -253,3 +253,7 @@
           - [Docs](https://docs.cypress.io/api/commands/intercept#Ending-the-response-with-res-send)
 
 # Owner Dash Board
+
+- Restaurants
+- Restaurant
+- Dish
