@@ -7,6 +7,8 @@ import {createDish, createDishVariables} from "../../__generated__/createDish";
 import Nuber from "../../images/topBar.png";
 import {MY_RESTAURANT_QUERY} from "./myRestaurant";
 import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUtensils} from "@fortawesome/free-solid-svg-icons";
 
 interface IParams {
   id: string;
@@ -122,34 +124,41 @@ export const AddDish = () => {
               })}
             />
             <div>
-              <h4 className="font-medium mb-3 text-lg text-white">
-                Dish Options
-              </h4>
-              <span
-                onClick={clickHandler}
-                className="cursor-pointer text-white bg-gray-900 py-1 px-2 mt-5"
-              >
-                Add Dish Option
-              </span>
+              <div className="flex justify-between">
+                <h4 className=" font-semibold text-lg">Dish Options</h4>
+                <span
+                  onClick={clickHandler}
+                  className="cursor-pointer text-white bg-lime-500 py-1 px-2 mt-5 rounded-lg"
+                >
+                  Add Dish Option
+                </span>
+              </div>
               {optionsNumber.length !== 0 &&
                 optionsNumber.map((id) => {
                   return (
-                    <div key={id} className="mt-5">
+                    <div key={id} className="mt-5 flex justify-between">
+                      <div className="flex items-center">
+                        <FontAwesomeIcon
+                          className=" text-lime-300 mr-3"
+                          icon={faUtensils}
+                          size={"2x"}
+                        />
+                      </div>
                       <input
                         {...register(`${id}-Opt-Name`)}
                         type="text"
                         placeholder="Option Name"
-                        className="py-2 px-4 focus:outline-none focus:border-gray-600 border-2 mr-3"
+                        className="py-1 px-5 focus:outline-none focus:border-gray-600 border-2 mr-3"
                       />
                       <input
                         {...register(`${id}-Opt-Extra`)}
                         type="number"
                         min={0}
                         placeholder="Option Extra Price"
-                        className="py-2 px-4 focus:outline-none focus:border-gray-600 border-2"
+                        className="py-1 px-5 focus:outline-none focus:border-gray-600 border-2"
                       />
                       <span
-                        className="cursor-pointer text-white bg-red-500 py-3 px-2 ml-3"
+                        className="cursor-pointer text-white bg-red-500 py-1 px-4 rounded-lg"
                         onClick={() => onDeleteClick(id)}
                       >
                         Delete Option
