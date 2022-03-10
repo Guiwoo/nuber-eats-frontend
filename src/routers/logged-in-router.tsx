@@ -11,6 +11,7 @@ import {RestaurantDetail} from "../pages/client/restaurantDetail";
 import {MyRestaruants} from "../pages/owner/myRestaurants";
 import {MyRestaurant} from "../pages/owner/myRestaurant";
 import {AddRestaurant} from "../pages/owner/addRestaurant";
+import {AddDish} from "../pages/owner/addDish";
 
 export const LoggedInRouter = () => {
   const {data, loading, error} = useMe();
@@ -42,6 +43,7 @@ export const LoggedInRouter = () => {
               <Route index element={<MyRestaruants />} />
               <Route path="add-restaurant" element={<AddRestaurant />} />
               <Route path="restaurants/:id" element={<MyRestaurant />} />
+              <Route path="restaurants/:id/add-dish" element={<AddDish />} />
             </>
           )}
         </Route>

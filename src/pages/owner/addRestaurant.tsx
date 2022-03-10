@@ -10,7 +10,7 @@ import {
   createRestaurant,
   createRestaurantVariables,
 } from "../../__generated__/createRestaurant";
-import {MY_RESTAURANT_QUERY} from "./myRestaurants";
+import {MY_RESTAURANT_QUERY} from "./myRestaurant";
 
 const CREATE_RESTAURANT_MUTATION = gql`
   mutation createRestaurant($input: CreateRestaurantInput!) {

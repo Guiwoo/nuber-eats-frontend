@@ -1,4 +1,4 @@
-import {gql, useApolloClient, useQuery} from "@apollo/client";
+import {gql, useQuery} from "@apollo/client";
 import {Link} from "react-router-dom";
 import {HelmetLayout} from "../../components/HelmetLayout";
 import {RESTAURANT_FRAGMENT} from "../../fragment";
@@ -6,7 +6,7 @@ import {myRestaurants} from "../../__generated__/myRestaurants";
 import Nuber from "../../images/topBar.png";
 import {RestaurantList} from "../../components/restaurantList";
 
-export const MY_RESTAURANT_QUERY = gql`
+export const MY_RESTAURANTS_QUERY = gql`
   query myRestaurants {
     myRestaurants {
       ok
@@ -20,7 +20,7 @@ export const MY_RESTAURANT_QUERY = gql`
 `;
 
 export const MyRestaruants = () => {
-  const {data} = useQuery<myRestaurants>(MY_RESTAURANT_QUERY);
+  const {data} = useQuery<myRestaurants>(MY_RESTAURANTS_QUERY);
 
   return (
     <div>
