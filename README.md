@@ -273,3 +273,9 @@
     - Can make a dynamic field with react-hook-form
     - [DynamicField](https://react-hook-form.com/api/usefieldarray)
   - Setvalue on ReactHookForm[setValue](https://react-hook-form.com/api/useform/setvalue)
+
+<VictoryLabel
+style={{fontSize: 14}}
+renderInPortal
+dy={-20}
+/>

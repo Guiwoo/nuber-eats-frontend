@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MyRestaurantInput } from "./globalTypes";
+import { MyRestaurantInput, OrderStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: myRestaurant
@@ -39,6 +39,14 @@ export interface myRestaurant_myRestaurant_restaurant_menu {
   options: myRestaurant_myRestaurant_restaurant_menu_options[] | null;
 }
 
+export interface myRestaurant_myRestaurant_restaurant_orders {
+  __typename: "Order";
+  id: number;
+  createdAt: any;
+  total: number | null;
+  status: OrderStatus;
+}
+
 export interface myRestaurant_myRestaurant_restaurant {
   __typename: "Restaurant";
   id: number;
@@ -48,6 +56,7 @@ export interface myRestaurant_myRestaurant_restaurant {
   address: string;
   isPromted: boolean;
   menu: myRestaurant_myRestaurant_restaurant_menu[];
+  orders: myRestaurant_myRestaurant_restaurant_orders[];
 }
 
 export interface myRestaurant_myRestaurant {

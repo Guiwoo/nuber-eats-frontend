@@ -43,3 +43,12 @@ export const DISH_FRAGMENT = gql`
     
   }
 `
+
+export const OREDERS_FRAGMENT = gql`
+  fragment OrdersParts on Order{
+    id
+    createdAt
+    total
+    status
+  }
+`
