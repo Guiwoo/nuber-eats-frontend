@@ -256,6 +256,18 @@
 
 - Restaurants
 - Restaurant
+
+  - Shows the dishes
+  - Graph for monthly sales,dayly or year
+
+    - [Victory](https://formidable.com/open-source/victory/)
+    - [PieChart](https://formidable.com/open-source/victory/docs/victory-pie)
+
+    - Victory Container
+      - Kinda Parents Component !!(It will helps to inner victory rendering)
+      - Basic of Dynamic Svg rederning
+      - Service of Portal Container as well
+
 - Dish
   - menu
     - Can make a dynamic field with react-hook-form

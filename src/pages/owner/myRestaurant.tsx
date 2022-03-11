@@ -6,6 +6,7 @@ import {
   myRestaurant,
   myRestaurantVariables,
 } from "../../__generated__/myRestaurant";
+import {VictoryAxis, VictoryBar, VictoryChart, VictoryPie} from "victory";
 
 export const MY_RESTAURANT_QUERY = gql`
   query myRestaurant($input: MyRestaurantInput!) {
@@ -27,6 +28,16 @@ export const MY_RESTAURANT_QUERY = gql`
 interface IParams {
   id: string;
 }
+
+const chartData = [
+  {x: 1, y: 3000},
+  {x: 2, y: 1500},
+  {x: 3, y: 1700},
+  {x: 4, y: 2200},
+  {x: 5, y: 1300},
+  {x: 6, y: 2800},
+  {x: 7, y: 3500},
+];
 
 export const MyRestaurant = () => {
   const {id} = useParams<keyof IParams>() as IParams;
@@ -71,6 +82,18 @@ export const MyRestaurant = () => {
               ))}
             </div>
           )}
+        </div>
+        <div className="mt-3">
+          <h4 className="text-center text-2xl font-medium">Sales</h4>
+          <div className="max-w-lg w-full mx-auto">
+            {/* <VictoryAxis
+                tickFormat={(step) => `$${step / 1000}k`}
+                dependentAxis
+              />
+              <VictoryAxis tickFormat={(step) => `Day ${step}`} />
+              <VictoryBar data={chartData} /> */}
+            <VictoryPie data={chartData} />
+          </div>
         </div>
       </div>
     </div>
