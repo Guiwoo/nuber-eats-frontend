@@ -8,7 +8,11 @@ import Nuber from "../../images/topBar.png";
 import {useForm} from "react-hook-form";
 import {Link, useNavigate} from "react-router-dom";
 import {HelmetLayout} from "../../components/HelmetLayout";
-import {CATEGORY_FRAMENT, RESTAURANT_FRAGMENT} from "../../fragment";
+import {
+  CATEGORY_FRAMENT,
+  DISH_FRAGMENT,
+  RESTAURANT_FRAGMENT,
+} from "../../fragment";
 import {CategoryList} from "../../components/categoryList";
 import {Pagination} from "../../components/pagination";
 import {RestaurantList} from "../../components/restaurantList";

@@ -274,8 +274,18 @@
     - [DynamicField](https://react-hook-form.com/api/usefieldarray)
   - Setvalue on ReactHookForm[setValue](https://react-hook-form.com/api/useform/setvalue)
 
-<VictoryLabel
-style={{fontSize: 14}}
-renderInPortal
-dy={-20}
-/>
+# Paddle
+
+- [] Need to do it later after deploying webpage
+
+- for paying and buying thigns providing[Paddle](https://vendors.paddle.com/onboarding/steps/welcome)
+- Sign in with Sass,and No new revenue !
+
+- On their homepage they suggest Catalog
+  - Products "for paying once to use "
+  - Subscription Plan "for Paying everysigle creteria cycle"
+
+# Order Page
+
+- Share the dish component with owner and client
+- give one more props for checking owner or client
