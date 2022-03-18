@@ -289,3 +289,6 @@
 
 - Share the dish component with owner and client
 - give one more props for checking owner or client
+
+- keep in mind the dish page is shared on owner and client
+- when you pass the props have to configure those cases

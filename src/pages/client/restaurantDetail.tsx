@@ -4,6 +4,8 @@ import {DISH_FRAGMENT, RESTAURANT_FRAGMENT} from "../../fragment";
 
 import {Dish} from "../../components/dish";
 import {restaurant, restaurantVariables} from "../../__generated__/restaurant";
+import {useState} from "react";
+import {CreateOrderItemInput} from "../../__generated__/globalTypes";
 
 const RESTAURANT_QUERY = gql`
   query restaurant($input: RestaurantInput!) {
@@ -21,22 +23,66 @@ const RESTAURANT_QUERY = gql`
   ${RESTAURANT_FRAGMENT}
   ${DISH_FRAGMENT}
 `;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const CREATE_ORDER_MUTATION = gql`
+  mutation createOrder($input: CreateOrderInput!) {
+    createOrder(input: $input) {
+      ok
+      error
+    }
+  }
+`;
+
 interface IResProps {
   id: string;
 }
 
 export const RestaurantDetail = () => {
   const {id} = useParams<keyof IResProps>() as IResProps;
-  const {loading, data} = useQuery<restaurant, restaurantVariables>(
-    RESTAURANT_QUERY,
-    {
-      variables: {
-        input: {
-          restaurantId: +id,
-        },
+  const {data} = useQuery<restaurant, restaurantVariables>(RESTAURANT_QUERY, {
+    variables: {
+      input: {
+        restaurantId: +id,
       },
+    },
+  });
+  const [orderStarted, setOrderStarted] = useState(false);
+  const [orderItems, setOrderItems] = useState<CreateOrderItemInput[]>([]);
+  const triggerStartOrder = () => {
+    setOrderStarted(true);
+  };
+  const getItem = (dishId: number) => {
+    return orderItems.find((order) => order.dishId === dishId);
+  };
+  const isSelected = (dishId: number) => {
+    return Boolean(getItem(dishId));
+  };
+  const addItemToOrder = (dishId: number) => {
+    if (isSelected(dishId)) {
+      return;
     }
-  );
+    setOrderItems((current) => [{dishId, options: []}, ...current]);
+  };
+  const removeFromOrder = (dishId: number) => {
+    setOrderItems((current) =>
+      current.filter((dish) => dish.dishId !== dishId)
+    );
+  };
+  const addOptionToItem = (dishId: number, option: any) => {
+    if (!isSelected(dishId)) {
+      return;
+    }
+    const oldItem = getItem(dishId);
+    if (oldItem) {
+      removeFromOrder(dishId);
+      setOrderItems((current) => [
+        {dishId, options: [option, ...oldItem.options!]},
+        ...current,
+      ]);
+    }
+  };
+  console.log(orderItems);
   return (
     <div>
       <div
@@ -56,10 +102,24 @@ export const RestaurantDetail = () => {
         </div>
       </div>
 
-      <div className="container grid md:grid-cols-3 gap-x-5 gap-y-10 mt-8 pb-20">
-        {data?.restaurant?.restaurant?.menu.map((dish) => (
-          <Dish key={dish.id} {...dish} isCustomer={true} />
-        ))}
+      <div className="container flex flex-col items-end">
+        <button onClick={triggerStartOrder} className="btn px-2">
+          {orderStarted ? "Ordering" : "Start Order"}
+        </button>
+        <div className="w-full grid md:grid-cols-3 gap-x-5 gap-y-10 mt-8 pb-20">
+          {data?.restaurant?.restaurant?.menu.map((dish) => (
+            <Dish
+              isSelected={isSelected(dish.id)}
+              removeFromOrder={removeFromOrder}
+              key={dish.id}
+              {...dish}
+              isCustomer={true}
+              orderStarted={orderStarted}
+              addItemToOrder={addItemToOrder}
+              addOptionToItem={addOptionToItem}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
