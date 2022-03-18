@@ -1,7 +1,10 @@
 # What need to do more
 
 - [] Search Page
+
 - [] UnitTesting the Pages
+
+- [] before confirm the order show the list for order item and total price
 
 # Set Up
 

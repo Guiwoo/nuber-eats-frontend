@@ -1,12 +1,17 @@
-import {gql, useQuery} from "@apollo/client";
-import {useParams} from "react-router-dom";
+import {gql, useMutation, useQuery} from "@apollo/client";
+import {useNavigate, useParams} from "react-router-dom";
 import {DISH_FRAGMENT, RESTAURANT_FRAGMENT} from "../../fragment";
 
 import {Dish} from "../../components/dish";
 import {restaurant, restaurantVariables} from "../../__generated__/restaurant";
 import {useState} from "react";
-import {CreateOrderItemInput} from "../../__generated__/globalTypes";
+
 import {DishOptionComponent} from "../../components/dish-option";
+import {
+  createOrder,
+  createOrderVariables,
+} from "../../__generated__/createOrder";
+import {CreateOrderItemInput} from "../../__generated__/globalTypes";
 
 const RESTAURANT_QUERY = gql`
   query restaurant($input: RestaurantInput!) {
@@ -31,6 +36,7 @@ const CREATE_ORDER_MUTATION = gql`
     createOrder(input: $input) {
       ok
       error
+      orderId
     }
   }
 `;
@@ -120,7 +126,42 @@ export const RestaurantDetail = () => {
       return;
     }
   };
-  console.log(orderItems);
+  const triggerCancelOrder = () => {
+    setOrderStarted(false);
+    setOrderItems([]);
+  };
+  const navigation = useNavigate();
+  const onCompleted = (data: createOrder) => {
+    const {
+      createOrder: {ok, orderId},
+    } = data;
+    if (data.createOrder.ok) {
+      navigation(`/orders/${orderId}`);
+    }
+  };
+  const [_CREATE_ORDER_MUTATION, {loading: placingOrder}] = useMutation<
+    createOrder,
+    createOrderVariables
+  >(CREATE_ORDER_MUTATION, {
+    onCompleted,
+  });
+  const triggerConfirmOrder = () => {
+    if (orderItems.length === 0) {
+      alert("Can't place empty order");
+      return;
+    }
+    const ok = window.confirm("You ar abut to place an order");
+    if (ok) {
+      _CREATE_ORDER_MUTATION({
+        variables: {
+          input: {
+            restaurantId: +id,
+            items: orderItems,
+          },
+        },
+      });
+    }
+  };
   return (
     <div>
       <div
@@ -141,9 +182,24 @@ export const RestaurantDetail = () => {
       </div>
 
       <div className="container flex flex-col items-end">
-        <button onClick={triggerStartOrder} className="btn px-2">
-          {orderStarted ? "Ordering" : "Start Order"}
-        </button>
+        {!orderStarted && (
+          <button onClick={triggerStartOrder} className="btn px-2">
+            Start Order
+          </button>
+        )}
+        {orderStarted && (
+          <div className="flex items-center">
+            <button onClick={triggerConfirmOrder} className="btn px-2 mr-2">
+              Confirm Order
+            </button>
+            <button
+              onClick={triggerCancelOrder}
+              className="btn px-2 bg-black hover:bg-black"
+            >
+              Cancel Order
+            </button>
+          </div>
+        )}
         <div className="w-full grid md:grid-cols-3 gap-x-5 gap-y-10 mt-8 pb-20">
           {data?.restaurant?.restaurant?.menu.map((dish) => (
             <Dish
