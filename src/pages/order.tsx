@@ -1,7 +1,9 @@
 import {gql, useQuery, useSubscription} from "@apollo/client";
+import {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {HelmetLayout} from "../components/HelmetLayout";
 import {FULL_ORDER_FRAGMENT} from "../fragment";
+import {useMe} from "../hooks/useMe";
 import {getOrder, getOrderVariables} from "../__generated__/getOrder";
 import {
   orderUpdates,
@@ -36,15 +38,9 @@ interface IResProps {
 
 export const OrderPage = () => {
   const {id} = useParams<keyof IResProps>() as IResProps;
-  const {data} = useQuery<getOrder, getOrderVariables>(GET_ORDER, {
-    variables: {
-      input: {
-        id: +id,
-      },
-    },
-  });
-  const {data: subData} = useSubscription<orderUpdates, orderUpdatesVariables>(
-    ORDER_SUBSCRIPTION,
+  const {data: userData} = useMe();
+  const {data, subscribeToMore} = useQuery<getOrder, getOrderVariables>(
+    GET_ORDER,
     {
       variables: {
         input: {
@@ -53,8 +49,33 @@ export const OrderPage = () => {
       },
     }
   );
-  console.log(data);
-  console.log("✅", subData);
+  useEffect(() => {
+    if (data?.getOrder.ok) {
+      subscribeToMore({
+        document: ORDER_SUBSCRIPTION,
+        variables: {
+          input: {
+            id: +id,
+          },
+        },
+        updateQuery: (
+          prev,
+          {subscriptionData: {data}}: {subscriptionData: {data: orderUpdates}}
+        ) => {
+          if (!data) return prev;
+          return {
+            getOrder: {
+              ...prev.getOrder,
+              order: {
+                ...data.orderUpdates,
+              },
+            },
+          };
+        },
+      });
+    }
+  }, [data]);
+
   return (
     <div className="mt-32 container flex justify-center">
       <HelmetLayout title={`Order #${id}`} />
@@ -84,9 +105,21 @@ export const OrderPage = () => {
               {data?.getOrder.order?.driver?.email || "Not yet."}
             </span>
           </div>
-          <span className=" text-center mt-5 mb-3  text-2xl text-lime-600">
-            Status: {data?.getOrder.order?.status}
-          </span>
+          {userData?.me.role === "Client" && (
+            <span className=" text-center mt-5 mb-3  text-2xl text-lime-600">
+              Status: {data?.getOrder.order?.status}
+            </span>
+          )}
+          {userData?.me.role === "Owner" && (
+            <>
+              {data?.getOrder.order?.status === "Pending" && (
+                <button className="btn">Accept Order</button>
+              )}
+              {data?.getOrder.order?.status === "Cooking" && (
+                <button className="btn">Order's Ready</button>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

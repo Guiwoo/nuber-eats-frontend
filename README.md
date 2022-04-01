@@ -299,3 +299,9 @@
 # Order Page RealTime
 
 - Setting SubsCriptions npm install subscriptions-transport-ws(Defends on your backend "graphql-ws or this one")[Check here](https://www.apollographql.com/docs/react/data/subscriptions/#choosing-a-subscription-library)
+
+- Subscribe To More
+  - helping query and subscribe
+  - A function that enables you to execute a subscription
+  - [SubscribeMore](https://www.apollographql.com/docs/react/data/queries/#subscribetomore)
+  - [Subscribe to Update](https://www.apollographql.com/docs/react/data/subscriptions/#subscribing-to-updates-for-a-query)
