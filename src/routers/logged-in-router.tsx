@@ -12,6 +12,7 @@ import {MyRestaruants} from "../pages/owner/myRestaurants";
 import {MyRestaurant} from "../pages/owner/myRestaurant";
 import {AddRestaurant} from "../pages/owner/addRestaurant";
 import {AddDish} from "../pages/owner/addDish";
+import {OrderPage} from "../pages/order";
 
 export const LoggedInRouter = () => {
   const {data, loading, error} = useMe();
@@ -30,6 +31,7 @@ export const LoggedInRouter = () => {
         <Route path="/">
           <Route path="confirm" element={<ConfirmEmail />} />
           <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="/orders/:id" element={<OrderPage />} />
           {data.me.role === "Client" && (
             <>
               <Route index element={<Restaurant />} />

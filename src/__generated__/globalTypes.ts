@@ -73,6 +73,10 @@ export interface EditProfileInput {
   password?: string | null;
 }
 
+export interface GetOrderInput {
+  id: number;
+}
+
 export interface LoginInput {
   email: string;
   password: string;
@@ -85,6 +89,10 @@ export interface MyRestaurantInput {
 export interface OrderItemOptionInputType {
   name: string;
   choice?: string | null;
+}
+
+export interface OrderUpdatesInput {
+  id: number;
 }
 
 export interface RestaurantInput {

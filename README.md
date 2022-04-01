@@ -295,3 +295,7 @@
 
 - keep in mind the dish page is shared on owner and client
 - when you pass the props have to configure those cases
+
+# Order Page RealTime
+
+- Setting SubsCriptions npm install subscriptions-transport-ws(Defends on your backend "graphql-ws or this one")[Check here](https://www.apollographql.com/docs/react/data/subscriptions/#choosing-a-subscription-library)
