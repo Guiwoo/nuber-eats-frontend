@@ -64,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@types/google.maps": "^3.48.5",
     "@types/react-helmet": "^6.1.5"
   },
   "jest": {

@@ -1,14 +1,21 @@
 import GoogleMapReact from "google-map-react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 interface ICoords {
   lat: number;
   lng: number;
 }
+interface IDriverProps {
+  lat: number;
+  lng: number;
+  $hover?: any;
+}
+
+const Driver: React.FC<IDriverProps> = () => <div className="text-lg">🚖</div>;
 
 export const Dashboard = () => {
   const [driverCoords, setDriverCoords] = useState<ICoords>({lat: 0, lng: 0});
-  const [map, setMap] = useState<any>();
+  const [map, setMap] = useState<google.maps.Map>();
   const [maps, setMpas] = useState<any>();
   const onSucess = ({coords: {latitude, longitude}}: GeolocationPosition) => {
     setDriverCoords({lat: latitude, lng: longitude});
@@ -23,15 +30,49 @@ export const Dashboard = () => {
   }, []);
   useEffect(() => {
     if (map && maps) {
-      map.panTo(new maps.LatLng(driverCoords.lat, driverCoords.lng));
+      map.panTo(new google.maps.LatLng(driverCoords.lat, driverCoords.lng));
+      //   const geocoder = new google.maps.Geocoder();
+      //   geocoder.geocode(
+      //     {location: new google.maps.LatLng(driverCoords.lat, driverCoords.lng)},
+      //     (results, status) => {
+      //       console.log(status, results);
+      //     }
+      //   );
     }
   }, [driverCoords.lat, driverCoords.lng]);
   const onApiLoaded = ({map, maps}: {map: any; maps: any}) => {
     setMap(map);
     setMpas(maps);
     setTimeout(() => {
-      map.panTo(new maps.LatLng(driverCoords.lat, driverCoords.lng));
+      map.panTo(new google.maps.LatLng(driverCoords.lat, driverCoords.lng));
     }, 2000);
+  };
+  const onGetRouteClick = () => {
+    const directionService = new google.maps.DirectionsService();
+    const directionRenderer = new google.maps.DirectionsRenderer();
+    if (map) {
+      directionRenderer.setMap(map);
+      directionService.route(
+        {
+          travelMode: google.maps.TravelMode.DRIVING,
+          origin: {
+            location: new google.maps.LatLng(
+              driverCoords.lat,
+              driverCoords.lng
+            ),
+          },
+          destination: {
+            location: new google.maps.LatLng(
+              driverCoords.lat + 0.5,
+              driverCoords.lng + 0.03
+            ),
+          },
+        },
+        (result, status) => {
+          directionRenderer.setDirections(result);
+        }
+      );
+    }
   };
   return (
     <div>
@@ -49,16 +90,12 @@ export const Dashboard = () => {
           }}
           bootstrapURLKeys={{key: "AIzaSyBIXzb1BErW9ILN08wRIP2HeiUtkWhj6l8"}}
         >
-          <div
-            // @ts-ignore
-            lat={driverCoords.lat}
-            lng={driverCoords.lng}
-            className="text-lg"
-          >
-            🚖
-          </div>
+          {/* <Driver lat={driverCoords.lat} lng={driverCoords.lng} /> */}
         </GoogleMapReact>
       </div>
+      <button className="btn" onClick={onGetRouteClick}>
+        Get Route
+      </button>
     </div>
   );
 };
