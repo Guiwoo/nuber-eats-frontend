@@ -305,3 +305,34 @@
   - A function that enables you to execute a subscription
   - [SubscribeMore](https://www.apollographql.com/docs/react/data/queries/#subscribetomore)
   - [Subscribe to Update](https://www.apollographql.com/docs/react/data/subscriptions/#subscribing-to-updates-for-a-query)
+
+# Driver DashBoard
+
+- Google Map React
+- google-map-react는 Google Maps API의 작은 세트를 통해 작성된 - 구성요소입니다. Google 지도에서 모든 React 구성 요소를 렌더링할 수 있습니다.
+
+  - npm i google-map-react
+  - npm i --save-dev @types/google-map-react
+    [Packagae](https://www.npmjs.com/package/google-map-react)
+    [GoogleDocument About Maps](https://developers.google.com/maps/documentation/javascript/overview)
+
+- Maps JavaScript API 생성
+  [Google Colud API](https://console.cloud.google.com/apis/library/maps-backend.googleapis.com)
+
+사용자 인증 정보
+사용자 인증 정보 만들기 - API 키 생성
+[Google Cloud Credential](https://console.cloud.google.com/apis/credentials)
+
+- Geolocation.watchPosition()
+
+  - 장치의 위치가 바뀔 때마다, 자동으로 새로운 위치를 사용해 호출할 처리기 함수를 등록합니다.
+    [Mdn-GeoLocation](https://developer.mozilla.org/ko/docs/Web/API/Geolocation_API)
+
+  - navigator.geolocation.watchPosition(success[, error[, options]])
+  - success콜백함수와 error콜백함수의 파라미터로 Position대신 GeolocationPosition, PositionError대신 GeolocationPositionError로 사용할 수 있습니다.
+
+  - Maps
+  - [Reference of Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map)
+
+    - panTo()
+      - 지도의 중심을 지정된 LatLng로 변경합니다. 변경 사항이 지도의 너비와 높이보다 작으면 전환이 부드럽게 애니메이션됩니다.
