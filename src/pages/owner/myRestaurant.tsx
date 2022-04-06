@@ -58,6 +58,7 @@ interface IParams {
 }
 
 export const MyRestaurant = () => {
+  const navigation = useNavigate();
   const {id} = useParams<keyof IParams>() as IParams;
   const {data} = useQuery<myRestaurant, myRestaurantVariables>(
     MY_RESTAURANT_QUERY,
@@ -72,7 +73,6 @@ export const MyRestaurant = () => {
   const {data: subsData} = useSubscription<pendingOrders>(
     PENDING_ORDER_SUBSCRIPTION
   );
-  const navigation = useNavigate();
   useEffect(() => {
     if (subsData?.pendingOrders.id) {
       navigation(`/orders/${subsData?.pendingOrders.id}`);

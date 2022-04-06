@@ -153,7 +153,7 @@ export const RestaurantDetail = () => {
       alert("Can't place empty order");
       return;
     }
-    const ok = window.confirm("You ar abut to place an order");
+    const ok = window.confirm("You are about to place an order");
     if (ok) {
       _CREATE_ORDER_MUTATION({
         variables: {
